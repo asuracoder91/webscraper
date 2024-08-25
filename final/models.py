@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List, TypeAlias
 
 
 @dataclass
@@ -8,3 +9,6 @@ class Job:
     job_position: str
     job_link: str
     job_description: str
+
+
+JobList: TypeAlias = List[Job]

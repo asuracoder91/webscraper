@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Job Results</title>
+	</head>
+	<body>
+		<h1>Job Search Results</h1>
+
+		<h2>Berlin Jobs</h2>
+		{% if berlin_jobs %}
+		<table border="1">
+			<tr>
+				<th>Index</th>
+				<th>Company Name</th>
+				<th>Job Position</th>
+				<th>Description</th>
+			</tr>
+			{% for idx, job in enumerate(berlin_jobs) %}
+			<tr>
+				<td>{{ idx + 1 }}</td>
+				<td>
+					<a href="{{ job.company_url }}" target="_blank"
+						>{{ job.company_name }}</a
+					>
+				</td>
+				<td>
+					<a href="{{ job.job_link }}" target="_blank"
+						>{{ job.job_position }}</a
+					>
+				</td>
+				<td>{{ job.job_description }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p>No Berlin jobs found.</p>
+		{% endif %}
+
+		<h2>Web3 Jobs</h2>
+		{% if web3_jobs %}
+		<table border="1">
+			<tr>
+				<th>Index</th>
+				<th>Company Name</th>
+				<th>Job Position</th>
+				<th>Description</th>
+			</tr>
+			{% for idx, job in enumerate(web3_jobs) %}
+			<tr>
+				<td>{{ idx + 1 }}</td>
+				<td>
+					<a href="{{ job.company_url }}" target="_blank"
+						>{{ job.company_name }}</a
+					>
+				</td>
+				<td>
+					<a href="{{ job.job_link }}" target="_blank"
+						>{{ job.job_position }}</a
+					>
+				</td>
+				<td>{{ job.job_description }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+
+		<form method="GET" action="{{ url_for('next_web3_page') }}">
+			<button type="submit">Next Page</button>
+		</form>
+		{% else %}
+		<p>No Web3 jobs found.</p>
+		{% endif %}
+
+		<a href="{{ url_for('index') }}">Search Again</a>
+	</body>
+</html>
